@@ -13,39 +13,39 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-set -u
 
 bin=`dirname "$0"`
 bin=`cd "$bin"; pwd`
 
-echo "========== preparing wordcount data=========="
+echo "========== running wordcount bench =========="
 # configure
 DIR=`cd $bin/../; pwd`
 . "${DIR}/../bin/hibench-config.sh"
 . "${DIR}/conf/configure.sh"
 
-# compress check
-if [ $COMPRESS -eq 1 ]; then
+# compress
+if [ $COMPRESS -eq 1 ]
+then
     COMPRESS_OPT="-D mapred.output.compress=true \
-    -D mapred.output.compression.codec=$COMPRESS_CODEC \
-    -D mapred.output.compression.type=BLOCK "
+    -D mapred.output.compression.type=BLOCK \
+    -D mapred.output.compression.codec=$COMPRESS_CODEC"
 else
     COMPRESS_OPT="-D mapred.output.compress=false"
 fi
+ 
 
-# path check
-hadoop dfs -rmr $INPUT_HDFS
+# pre-running
+ START_TIME=`timestamp`
 
-# generate data
-$HADOOP_EXECUTABLE jar $HADOOP_EXAMPLES_JAR randomtextwriter \
-   $COMPRESS_OPT \
-   -D mapreduce.randomtextwriter.bytespermap=${BYTES_PER_MAP} \
-   -D mapreduce.randomtextwriter.mapsperhost=${MAPS_PER_HOST} \
-   $INPUT_HDFS
-result=$?
-if [ $result -ne 0 ]
-then
-    echo "ERROR: Hadoop job failed to run successfully." 
-    exit $result
-fi
-$HADOOP_HOME/bin/hadoop dfs -rmr $INPUT_HDFS/_*
+# run bench
+hadoop org.apache.hadoop.mapred.MRBench -numRuns ${NUM_RUNS} -inputLines ${INPUT_LINES} -maps ${NUM_MAPS} -reduces ${NUM_REDS} -verbose
+$HADOOP_EXECUTABLE jar $HADOOP_EXAMPLES_JAR  wordcount \
+    $COMPRESS_OPT \
+    -D mapred.reduce.tasks=${NUM_REDS} \
+    -D mapreduce.inputformat.class=org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat \
+    -D mapreduce.outputformat.class=org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat \
+    $INPUT_HDFS $OUTPUT_HDFS
+
+# post-running
+END_TIME=`timestamp`
+ 
