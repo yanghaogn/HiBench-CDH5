@@ -39,13 +39,7 @@ fi
 
 # run bench
 hadoop org.apache.hadoop.mapred.MRBench -numRuns ${NUM_RUNS} -inputLines ${INPUT_LINES} -maps ${NUM_MAPS} -reduces ${NUM_REDS} -verbose
-$HADOOP_EXECUTABLE jar $HADOOP_EXAMPLES_JAR  wordcount \
-    $COMPRESS_OPT \
-    -D mapred.reduce.tasks=${NUM_REDS} \
-    -D mapreduce.inputformat.class=org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat \
-    -D mapreduce.outputformat.class=org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat \
-    $INPUT_HDFS $OUTPUT_HDFS
-
+ 
 # post-running
 END_TIME=`timestamp`
  
