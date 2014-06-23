@@ -31,7 +31,7 @@
 	<classpathentry kind="lib" path="D:/MapReduce拓展包/hadoop-mapreduce-client-hs-2.3.0.jar"/>
 	<classpathentry kind="lib" path="D:/MapReduce拓展包/hadoop-mapreduce-client-hs-plugins-2.3.0.jar"/>
 	<classpathentry kind="lib" path="D:/MapReduce拓展包/hadoop-mapreduce-client-jobclient-2.3.0.jar"/>
-	<classpathentry kind="lib" path="D:/MapReduce拓展包/hadoop-mapreduce-client-jobclient-2.3.0-tests.jar"/>
+	<classpathentry kind="lib" path="D:/MapReduce拓展包/hadoop-mapreduce-client-jobclient-2.3.0-tests.jar" sourcepath="/hadoop-2.3.0-cdh5.0.1-src"/>
 	<classpathentry kind="lib" path="D:/MapReduce拓展包/hadoop-mapreduce-client-shuffle-2.3.0.jar"/>
 	<classpathentry kind="lib" path="D:/MapReduce拓展包/hadoop-mapreduce-examples-2.3.0.jar"/>
 	<classpathentry kind="lib" path="D:/MapReduce拓展包/hadoop-nfs-2.3.0.jar"/>
@@ -73,5 +73,7 @@
 	<classpathentry kind="lib" path="lib/mahout-math-0.8-cdh5.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/mahout-core-0.8-cdh5.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/uncommons-maths-1.2.2.jar"/>
+	<classpathentry kind="lib" path="D:/HDFS拓展包/hadoop-hdfs-2.3.0-cdh5.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/HDFS拓展包/hadoop-hdfs-2.3.0-cdh5.0.1-tests.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

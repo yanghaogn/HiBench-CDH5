@@ -38,10 +38,15 @@ hadoop org.apache.hadoop.fs.TestDFSIO  -clean
 
 # generate data
 
-hadoop org.apache.hadoop.fs.TestDFSIO -write \
+#hadoop org.apache.hadoop.fs.TestDFSIO -write \
+
+exec "$HADOOP_HOME/bin/hadoop" --config $HADOOP_CONF_DIR jar ${DATATOOLS} org.apache.hadoop.fs.TestDFSIO -write \
+
+
 -nrFiles ${NUM_FILES} \
 -fileSize ${FILE_SIZE} \
  -resFile ${RES_FILE}
+
 
 if [ $result -ne 0 ]
 then

@@ -15,7 +15,7 @@
 # limitations under the License.
 set -u 
 
-COMPRESS=0#$COMPRESS_GLOBAL
+COMPRESS=0
 COMPRESS_CODEC=$COMPRESS_CODEC_GLOBAL
 
  
