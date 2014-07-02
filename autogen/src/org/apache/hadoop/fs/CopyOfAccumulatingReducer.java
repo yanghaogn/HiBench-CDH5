@@ -99,7 +99,8 @@ public class CopyOfAccumulatingReducer extends MapReduceBase
     	  String value=values.next().toString();
         lSum += Long.parseLong(value);
         if(key.toString().contains(":time")){
-        	 output.collect(new Text(":EachIOtime"+(++i)), new Text(value));
+        	String host=key.toString().split(":")[1];
+        	 output.collect(new Text(host+":EachIOtime:"), new Text("\t"+value));
         }
       }
       output.collect(key, new Text(String.valueOf(lSum)));

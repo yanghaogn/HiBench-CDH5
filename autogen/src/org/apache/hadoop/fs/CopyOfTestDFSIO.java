@@ -364,12 +364,12 @@ public class CopyOfTestDFSIO implements Tool {
       LOG.info("Number of bytes processed = " + totalSize);
       LOG.info("Exec time = " + execTime);
       LOG.info("IO rate = " + ioRateMbSec);
-      
+      String hostName = java.net.InetAddress.getLocalHost().getHostName();
       output.collect(new Text(CopyOfAccumulatingReducer.VALUE_TYPE_LONG + "tasks"),
           new Text(String.valueOf(1)));
       output.collect(new Text(CopyOfAccumulatingReducer.VALUE_TYPE_LONG + "size"),
           new Text(String.valueOf(totalSize)));
-      output.collect(new Text(CopyOfAccumulatingReducer.VALUE_TYPE_LONG + "time"),
+      output.collect(new Text(CopyOfAccumulatingReducer.VALUE_TYPE_LONG +hostName+ ":time"),
           new Text(String.valueOf(execTime)));
       output.collect(new Text(CopyOfAccumulatingReducer.VALUE_TYPE_FLOAT + "rate"),
           new Text(String.valueOf(ioRateMbSec*1000)));
@@ -670,6 +670,7 @@ public class CopyOfTestDFSIO implements Tool {
     boolean isSequential = false;
     String version = CopyOfTestDFSIO.class.getSimpleName() + ".1.7";
 
+    
     LOG.info(version);
     if (args.length == 0) {
       System.err.println("Missing arguments.");
@@ -711,6 +712,7 @@ public class CopyOfTestDFSIO implements Tool {
         resFileName = args[++i];
       } else if(args[i].equals("-D")){
     	  String []arg=args[++i].split("=");
+    	  
     	  config.set(arg[0], arg[1]);
     	  
       }else {
@@ -820,6 +822,7 @@ public class CopyOfTestDFSIO implements Tool {
     BufferedReader lines = null;
     StringBuffer IOTime=new StringBuffer(500);
     try {
+    	
       in = new DataInputStream(fs.open(reduceFile));
       lines = new BufferedReader(new InputStreamReader(in));
       String line;
@@ -838,9 +841,7 @@ public class CopyOfTestDFSIO implements Tool {
           sqrate = Float.parseFloat(tokens.nextToken());
         else if (attr.contains(":EachIOtime")){
         	IOTime.append("\n");
-        	IOTime.append(line);
-        	
-        	 
+        	IOTime.append(line.split(":")[0]+"\t"+line.split(":")[2]);
             }
       }
     } finally {
@@ -855,11 +856,13 @@ public class CopyOfTestDFSIO implements Tool {
       "           Date & time: " + new Date(System.currentTimeMillis()),
       "       Number of files: " + tasks,
       "Total MBytes processed: " + toMB(size),
+      "file.blocksize: "+config.get("file.blocksize"),
+      "dfs.replication: "+config.get("dfs.replication"),
       "     Throughput mb/sec: " + size * 1000.0 / (time * MEGA),
       "Average IO rate mb/sec: " + med,
       " IO rate std deviation: " + stdDev,
       "    Test exec time sec: " + (float)execTime / 1000,
-      "" ,"Each IO Time:",IOTime.toString()};
+      IOTime.toString()};
 
     PrintStream res = null;
     try {
