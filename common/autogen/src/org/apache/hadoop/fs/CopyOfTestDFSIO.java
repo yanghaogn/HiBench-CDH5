@@ -822,6 +822,7 @@ public class CopyOfTestDFSIO implements Tool {
     BufferedReader lines = null;
     StringBuffer IOTime=new StringBuffer(500);
     try {
+    	
       in = new DataInputStream(fs.open(reduceFile));
       lines = new BufferedReader(new InputStreamReader(in));
       String line;
@@ -855,8 +856,8 @@ public class CopyOfTestDFSIO implements Tool {
       "           Date & time: " + new Date(System.currentTimeMillis()),
       "       Number of files: " + tasks,
       "Total MBytes processed: " + toMB(size),
-      "file.blocksize"+config.get("file.blocksize"),
-      "dfs.replication"+config.get("dfs.replication"),
+      "file.blocksize: "+config.get("file.blocksize"),
+      "dfs.replication: "+config.get("dfs.replication"),
       "     Throughput mb/sec: " + size * 1000.0 / (time * MEGA),
       "Average IO rate mb/sec: " + med,
       " IO rate std deviation: " + stdDev,
