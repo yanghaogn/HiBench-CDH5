@@ -27,10 +27,14 @@ fi
 
 
 #50个文件，50个map
-NUM_FILES=50
+NUM_FILES=5
 #每个文件1GB
 FILE_SIZE=1GB
-
+#分块大小
+#BLOCK_SIZE=67108864表示64MB
+BLOCK_SIZE=67108864
+#副本数
+REPLICATION=2
 #结果保存位置（本机上）
 RES_FILE=/home/ptmind/benchmark/TestDFSIO_results.log
 

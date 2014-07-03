@@ -16,14 +16,14 @@
 bin=`dirname "$0"`
 bin=`cd "$bin"; pwd`
 
-echo "========== running wordcount bench =========="
+echo "========== running TestDFSIO  bench =========="
 # configure
 DIR=`cd $bin/../; pwd`
 . "${DIR}/../bin/hibench-config.sh"
 . "${DIR}/conf/configure.sh"
 
-
-./write.sh
-./read.sh
-cat /home/ptmind/benchmark/TestDFSIO_results.log
+hadoop org.apache.hadoop.fs.TestDFSIO -clean
+. "${DIR}/bin/write.sh"
+. "${DIR}/bin/read.sh"
+#cat /home/ptmind/benchmark/TestDFSIO_results.log
 cat ${RES_FILE}

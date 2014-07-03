@@ -39,7 +39,6 @@ fi
 
 # run bench
 hadoop org.apache.hadoop.mapred.MRBench -numRuns ${NUM_RUNS} -inputLines ${INPUT_LINES} -maps ${NUM_MAPS} -reduces ${NUM_REDS} -verbose
- 
 # post-running
 END_TIME=`timestamp`
  

@@ -42,12 +42,10 @@ START_TIME=`timestamp`
 
 # run bench
 #hadoop org.apache.hadoop.fs.TestDFSIO -read \
-exec "$HADOOP_HOME/bin/hadoop" --config $HADOOP_CONF_DIR jar ${DATATOOLS} org.apache.hadoop.fs.TestDFSIO -read \
+exec "$HADOOP_HOME/bin/hadoop" --config $HADOOP_CONF_DIR jar ${DATATOOLS} org.apache.hadoop.fs.CopyOfTestDFSIO -read \
 -nrFiles ${NUM_FILES} \
 -fileSize ${FILE_SIZE} \
- -resFile ${RES_FILE}
-
-# post-running
-END_TIME=`timestamp`
-
-#gen_report "WORDCOUNT" ${START_TIME} ${END_TIME} ${SIZE} >> ${HIBENCH_REPORT}
+ -resFile ${RES_FILE} \
+-D file.blocksize=${BLOCK_SIZE} \
+-D dfs.replication=${REPLICATION} \
+-D file.replication=${REPLICATION}

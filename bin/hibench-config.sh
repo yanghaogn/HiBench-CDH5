@@ -31,7 +31,7 @@ HIBENCH_CONF=/home/ptmind/HiBench-master/conf
 HIVE_HOME=`printenv HIVE_HOME`
 MAHOUT_HOME=/usr/lib/mahout
 NUTCH_HOME=`printenv NUTCH_HOME`
-DATATOOLS=`printenv DATATOOLS`
+DATATOOLS=/home/ptmind/HiBench-master/common/autogen/dist/datatools.jar
 
 if [ -n "$HADOOP_HOME" ]; then
 	HADOOP_EXECUTABLE=$HADOOP_HOME/bin/hadoop

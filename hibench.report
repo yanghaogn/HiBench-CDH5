@@ -1,0 +1,11 @@
+WORDCOUNT    2014-06-18 19:58:09 /benchmarks/Wordcount/Input .171                                                          
+WORDCOUNT    2014-06-18 20:01:20 /benchmarks/Wordcount/Input 85.433                                                        
+KMEANS       2014-06-18 20:09:19 /benchmarks/KMeans/Input 131.572                                                       
+WORDCOUNT    2014-06-19 11:32:34 /benchmarks/Wordcount/Input 2.511                                                         
+WORDCOUNT    2014-06-19 11:36:53 /benchmarks/Wordcount/Input 99.558                                                        
+KMEANS       2014-06-19 12:24:15 /benchmarks/KMeans/Input 133.000                                                       
+SORT         2014-06-19 13:18:00 /benchmarks/sort/Input .174                                                          
+SORT         2014-06-19 13:22:31 /benchmarks/sort/Input 146.318                                                       
+TERASORT     2014-06-19 17:49:12 /benchmarks/Terasort/Input 4760.814                                                      
+TERASORT 10:41:58 <1403487716341,1403487718438>  2.097000 
+SORT 20:26:17 <1404127574595,1404127577823>  3.228000 

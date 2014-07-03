@@ -34,23 +34,17 @@ else
 fi
 
 # path check
-hadoop org.apache.hadoop.fs.TestDFSIO  -clean
-
+#hadoop jar ${DATATOOLS}  org.apache.hadoop.fs.TestDFSIO   -clean
+#echo "hello world"
 # generate data
-
+#echo ${DATA_TOOLS}
 #hadoop org.apache.hadoop.fs.TestDFSIO -write \
-
-exec "$HADOOP_HOME/bin/hadoop" --config $HADOOP_CONF_DIR jar ${DATATOOLS} org.apache.hadoop.fs.TestDFSIO -write \
-
-
+ hadoop jar ${DATATOOLS}  org.apache.hadoop.fs.CopyOfTestDFSIO -write \
 -nrFiles ${NUM_FILES} \
 -fileSize ${FILE_SIZE} \
- -resFile ${RES_FILE}
+ -resFile ${RES_FILE} \
+-D file.blocksize=${BLOCK_SIZE} \
+-D file.replication=${REPLICATION} \
+-D dfs.replication=${REPLICATION}
 
 
-if [ $result -ne 0 ]
-then
-    echo "ERROR: Hadoop job failed to run successfully." 
-    exit $result
-fi
-#$HADOOP_HOME/bin/hadoop dfs -rmr $INPUT_HDFS/_*

@@ -1,0 +1,60 @@
+-------------- NNBench -------------- : 
+                               Version: NameNode Benchmark 0.4
+                           Date & time: 2014-06-19 11:43:08,912
+
+                        Test Operation: create_write
+                            Start time: 2014-06-19 11:42:42,575
+                           Maps to run: 8
+                        Reduces to run: 1
+                    Block Size (bytes): 1048576
+                        Bytes to write: 1
+                    Bytes per checksum: 1
+                       Number of files: 15
+                    Replication factor: 3
+            Successful file operations: 120
+
+        # maps that missed the barrier: 0
+                          # exceptions: 162
+
+               TPS: Create/Write/Close: 11
+Avg exec time (ms): Create/Write/Close: 682.1166666666667
+            Avg Lat (ms): Create/Write: 119.96666666666667
+                   Avg Lat (ms): Close: 232.725
+
+                 RAW DATA: AL Total #1: 14396
+                 RAW DATA: AL Total #2: 27927
+              RAW DATA: TPS Total (ms): 81854
+       RAW DATA: Longest Map Time (ms): 20235.0
+                   RAW DATA: Late maps: 0
+             RAW DATA: # of exceptions: 162
+
+-------------- NNBench -------------- : 
+                               Version: NameNode Benchmark 0.4
+                           Date & time: 2014-06-19 11:55:58,902
+
+                        Test Operation: delete
+                            Start time: 2014-06-19 11:55:49,571
+                           Maps to run: 8
+                        Reduces to run: 1
+                    Block Size (bytes): 1048576
+                        Bytes to write: 1
+                    Bytes per checksum: 1
+                       Number of files: 15
+                    Replication factor: 3
+            Successful file operations: 120
+
+        # maps that missed the barrier: 0
+                          # exceptions: 0
+
+                           TPS: Delete: 1165
+            Avg Exec time (ms): Delete: 5.183333333333334
+                  Avg Lat (ms): Delete: 5.0
+null
+
+                 RAW DATA: AL Total #1: 600
+                 RAW DATA: AL Total #2: 0
+              RAW DATA: TPS Total (ms): 622
+       RAW DATA: Longest Map Time (ms): 103.0
+                   RAW DATA: Late maps: 0
+             RAW DATA: # of exceptions: 0
+
